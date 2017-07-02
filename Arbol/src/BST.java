@@ -36,13 +36,38 @@ public class BST implements IBST<Empleado> {
 	@Override
 	public boolean existe(int id) {
 		// TODO Auto-generated method stub
-		return false;
+		if (valor != null) {
+			if (id == valor.getId()) {
+				return true;
+			} else if (id < valor.getId() && izdo != null) {
+				return izdo.existe(id);
+			} else if (id < valor.getId() && dcho != null) {
+				return dcho.existe(id);
+			} else {
+				return false;
+			}
+			
+		} else {
+			return false;
+		}
+		
 	}
 
 	@Override
 	public Empleado obtener(int id) {
 		// TODO Auto-generated method stub
-		return null;
+				if (valor != null) {
+					if (id == valor.getId()) {
+						return valor;
+					} else if (id < valor.getId()) {
+						return izdo.obtener(id);
+					} else {
+						return dcho.obtener(id);
+					}
+					
+				} else {
+					return null;
+				}
 	}
 
 

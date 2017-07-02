@@ -6,6 +6,10 @@ public class Empleado implements Comparable<Empleado>{
 	private String desc3;
 	
 	
+	@Override
+	public String toString() {
+		return "Empleado [id=" + id + ", desc=" + desc + ", desc2=" + desc2 + ", desc3=" + desc3 + "]";
+	}
 	public Empleado(Integer id, String desc, String desc2, String desc3) {
 		super();
 		this.id = id;
