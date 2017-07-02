@@ -4,7 +4,7 @@ public class BST implements IBST<Empleado> {
 	private Empleado valor;
 	private BST izdo, dcho;
 
-	
+
 
 	@Override
 	public boolean esHola() {
@@ -27,10 +27,10 @@ public class BST implements IBST<Empleado> {
 				if (dcho == null) dcho = new BST();
 				dcho.insertar(empl);
 			} else {
-				
+
 			}
 		}
-		
+
 	}
 
 	@Override
@@ -46,53 +46,75 @@ public class BST implements IBST<Empleado> {
 			} else {
 				return false;
 			}
-			
+
 		} else {
 			return false;
 		}
-		
+
 	}
 
 	@Override
 	public Empleado obtener(int id) {
 		// TODO Auto-generated method stub
-				if (valor != null) {
-					if (id == valor.getId()) {
-						return valor;
-					} else if (id < valor.getId()) {
-						return izdo.obtener(id);
-					} else {
-						return dcho.obtener(id);
-					}
-					
-				} else {
-					return null;
-				}
+		if (valor != null) {
+			if (id == valor.getId()) {
+				return valor;
+			} else if (id < valor.getId()  && izdo != null) {
+				return izdo.obtener(id);
+			} else if (id < valor.getId() && dcho != null) {
+				return dcho.obtener(id);
+			} else {
+				return null;
+			}
+
+		} else {
+			return null;
+		}
 	}
 
 
 	@Override
 	public void preorden() {
 		// TODO Auto-generated method stub
-		
+		if (valor != null) {
+
+			System.out.println(valor);
+			if (izdo != null) izdo.preorden();
+			if (dcho != null) dcho.preorden();
+
+		}
+
 	}
 
 	@Override
 	public void inorden() {
 		// TODO Auto-generated method stub
-		
+		if (valor != null) {
+			if (izdo != null) izdo.inorden();
+			System.out.println(valor);
+
+			if (dcho != null) dcho.inorden();
+
+		}
 	}
 
 	@Override
 	public void postorden() {
 		// TODO Auto-generated method stub
-		
+		if (valor != null) {
+			if (izdo != null) izdo.postorden();
+			
+
+			if (dcho != null) dcho.postorden();
+			System.out.println(valor);
+
+		}
 	}
 
 	@Override
 	public void eliminar(int id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

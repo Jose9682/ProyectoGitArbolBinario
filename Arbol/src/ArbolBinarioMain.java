@@ -1,3 +1,5 @@
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 public class ArbolBinarioMain {
 
@@ -11,7 +13,7 @@ public class ArbolBinarioMain {
 		Empleado e6 = new Empleado(14, "Jose Medina", "otra cosa", "otro cosa");
 		
 		BST bst = new BST();
-		System.out.println("Esta vacio: " + bst.esVacio() + " - Es hoja: " + bst.esHola());
+	/*	System.out.println("Esta vacio: " + bst.esVacio() + " - Es hoja: " + bst.esHola());
 		bst.insertar(e1);
 		System.out.println("Esta vacio: " + bst.esVacio() + " - Es hoja: " + bst.esHola());
 		bst.insertar(e2);
@@ -20,7 +22,10 @@ public class ArbolBinarioMain {
 		
 		buscar(bst, 44);
 		buscar(bst, 8);
+		*/
 		
+		Arrays.asList(e1, e2, e3, e4, e5, e6).forEach(bst :: insertar);
+		bst.preorden();
 	}
 	
 	
