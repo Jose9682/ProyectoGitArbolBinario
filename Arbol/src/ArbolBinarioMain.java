@@ -26,9 +26,9 @@ public class ArbolBinarioMain {
 		
 		Arrays.asList(e1, e2, e3, e4, e5, e6).forEach(bst :: insertar);
 		bst.preorden();
-		bst.postorden();// otr
+
+		bst.postorden();
 	}
-	
 	
 private static void buscar (BST bst, int id){
 	if (bst.existe(id)) {
