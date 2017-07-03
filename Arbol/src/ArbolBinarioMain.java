@@ -26,7 +26,7 @@ public class ArbolBinarioMain {
 		
 		Arrays.asList(e1, e2, e3, e4, e5, e6).forEach(bst :: insertar);
 		bst.preorden();
-		bst.postorden();
+		bst.postorden();// otr
 	}
 	
 	
