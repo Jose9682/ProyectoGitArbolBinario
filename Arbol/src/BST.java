@@ -73,16 +73,19 @@ public class BST implements IBST<Empleado> {
 	}
 
 
+	private  void preordenImpl(String prefijo){
+		if (valor != null) {
+
+			System.out.println(prefijo + valor);
+			if (izdo != null) izdo.preordenImpl(prefijo + "  ");
+			if (dcho != null) dcho.preordenImpl(prefijo + "  ");
+
+		}
+	}
 	@Override
 	public void preorden() {
 		// TODO Auto-generated method stub
-		if (valor != null) {
-
-			System.out.println(valor);
-			if (izdo != null) izdo.preorden();
-			if (dcho != null) dcho.preorden();
-
-		}
+		preordenImpl("");
 
 	}
 
