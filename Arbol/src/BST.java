@@ -3,7 +3,7 @@ public class BST implements IBST<Empleado> {
 
 	private Empleado valor;
 	private BST izdo, dcho;
-
+	private BST padre;
 
 
 	@Override
@@ -15,17 +15,18 @@ public class BST implements IBST<Empleado> {
 	public boolean esVacio() {
 		return valor == null;
 	}
-	@Override
-	public void insertar(Empleado empl) {
+
+	private void insertarImpl(Empleado empl, BST padre) {
 		if (valor == null) {
 			this.valor = empl;
+			this.padre = padre;
 		} else {
 			if (empl.compareTo(valor) < 0) {
 				if (izdo == null) izdo = new BST(); 
-				izdo.insertar(empl);
+				izdo.insertarImpl(empl, this);
 			} else if (empl.compareTo(valor)>0){
 				if (dcho == null) dcho = new BST();
-				dcho.insertar(empl);
+				dcho.insertarImpl(empl, this);
 			} else {
 
 			}
@@ -33,6 +34,11 @@ public class BST implements IBST<Empleado> {
 
 	}
 
+	@Override
+	public void insertar(Empleado empl) {
+		// TODO Auto-generated method stub
+		insertarImpl(empl, null);	
+	}
 	@Override
 	public boolean existe(int id) {
 		// TODO Auto-generated method stub
@@ -106,17 +112,52 @@ public class BST implements IBST<Empleado> {
 		// TODO Auto-generated method stub
 		if (valor != null) {
 			if (izdo != null) izdo.postorden();
-			
+
 
 			if (dcho != null) dcho.postorden();
 			System.out.println(valor);
 
 		}
 	}
-
+	
+	private BST minimo(){
+		if (izdo != null && !izdo.esVacio()) {
+			return izdo.minimo();
+		} else {
+			return this;
+		}
+	}
+	
+	private void eliminarImpl(int id){
+		if (izdo != null && dcho != null) {
+			BST minimo = dcho.minimo();
+			this.valor = minimo.valor;
+			dcho.eliminar(minimo.valor.getId());
+		} else if (izdo != null || dcho != null) {
+			BST sustituto = izdo != null ? izdo : dcho;
+			this.valor = sustituto.valor;
+			this.izdo = sustituto.izdo;
+			this.dcho = sustituto.dcho;
+		} else {
+			if (padre != null){
+				if(this == padre.izdo) padre.izdo = null;
+				if(this == padre.dcho) padre.dcho = null;
+				padre = null;
+			}
+			valor = null;
+		}
+	}
 	@Override
 	public void eliminar(int id) {
-		// TODO Auto-generated method stub
+		if (valor != null) {
+			if (id == valor.getId()) {
+				eliminarImpl(id);
+			} else if (id < valor.getId() && izdo != null){
+				izdo.eliminar(id);
+			}else if (id > valor.getId() && dcho != null){
+				dcho.eliminar(id);
+			}
+		}
 
 	}
 

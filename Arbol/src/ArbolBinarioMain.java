@@ -14,7 +14,10 @@ public class ArbolBinarioMain {
 		
 		BST bst = new BST();
 		Arrays.asList(e1, e2, e3, e4, e5, e6).forEach(bst :: insertar);
+		
+		bst.eliminar(44);
 		bst.preorden();
+		
 		bst.postorden();// cambio hoy
 
 	}
